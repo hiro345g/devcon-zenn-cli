@@ -1,0 +1,22 @@
+name: devcon-zenn-cli
+services:
+  devcon-zenn-cli:
+    image: devcon-node-dod-git:1.0
+    container_name: devcon-zenn-cli
+    hostname: devcon-zenn-cli
+    init: true
+    tty: true
+    user: ${USER_UID:-1000}:${USER_GID:-1000}
+    command: sh -c "sh /script/install_zenn-cli.sh && sleep infinity"
+    working_dir: /home/node
+    volumes:
+      - workspace-data:/home/node/workspace
+      - ${SHARE_DIR:-../share}:/home/node/workspace/share
+      - ${SCRIPT_DIR:-./dc/script}:/script:ro
+    environment:
+      NPM_CONFIG_PREFIX: /home/node/workspace/.npm-global
+
+volumes:
+  workspace-data:
+    name: devcon-zenn-cli-workspace-data
+    external: true

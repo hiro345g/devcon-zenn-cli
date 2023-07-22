@@ -1,0 +1,50 @@
+{
+  "name": "devcon-zenn-cli",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "devcon-zenn-cli",
+  "remoteUser": "node",
+  "shutdownAction": "none",
+  "workspaceFolder": "/home/node",
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "[typescript]": {
+          "editor.codeActionsOnSave": {
+            "source.addMissingImports": true,
+            "source.organizeImports": true,
+            "source.fixAll.eslint": true
+          }
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[markdown]": {
+          "editor.formatOnSave": false,
+          "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+        }
+      },
+      "extensions": [
+        "MS-CEINTL.vscode-language-pack-ja",
+        "esbenp.prettier-vscode",
+        "yzhang.markdown-all-in-one",
+        "oderwat.indent-rainbow",
+        "naumovs.color-highlight",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "mikestead.dotenv"
+      ]
+    }
+  }
+}
