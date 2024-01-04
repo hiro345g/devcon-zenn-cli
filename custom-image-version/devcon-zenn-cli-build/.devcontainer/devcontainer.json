@@ -1,0 +1,10 @@
+{
+    "name": "devcon-zenn-cli-build",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "devcon-zenn-cli-build",
+    "remoteUser": "node",
+    "shutdownAction": "stopCompose",
+    "workspaceFolder": "/build"
+}
