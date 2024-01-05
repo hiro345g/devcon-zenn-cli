@@ -2,6 +2,11 @@
 STARSHIP_CMD=starship
 STARSHIP_CMD_FILE=/home/node/workspace/Download/${STARSHIP_CMD}
 SCRIPT_DIR=$(cd $(dirname $0);pwd)
+if [ "x$(id -u)" = "x0" ]; then
+  echo root
+  sh -u node -c "sh ${SCRIPT_DIR}/install_starship.sh"
+  exit 0
+fi
 
 sh ${SCRIPT_DIR}/download_starship.sh
 
