@@ -1,6 +1,6 @@
 # devcon-zenn-cli
 
-これは zenn-cli が使える Dev Container を提供するリポジトリです。Docker Hub にある hiro345g/devcon-node-dod-git:1.0 イメージを使用します。
+これは zenn-cli が使える Dev Container を提供するリポジトリです。Docker Hub にある hiro345g/devcon-node-dod-git:1.18 イメージを使用します。
 
 ## 準備
 
@@ -13,10 +13,11 @@ sh script/init.sh
 または、リポジトリをクローンしたディレクトリをカレントディレクトリーとして下記のコマンドを実行します。
 
 ```console
-docker pull hiro345g/devcon-node-dod-git:1.0
-docker tag hiro345g/devcon-node-dod-git:1.0 devcon-node-dod-git:1.0
+docker pull hiro345g/devcon-node-dod-git:1.18
+docker tag hiro345g/devcon-node-dod-git:1.18 devcon-node-dod-git:1.18
 docker compose -f dc/docker-compose.yml run --rm -u "0:0" dc-zenn-cli chown -R node:node /home/node/workspace
 docker compose -f dc/docker-compose.yml run --rm -u "0:0" dc-zenn-cli sh /script/download_starship.sh
+docker compose -f dc/docker-compose.yml run --rm dc-zenn-cli sh /script/init_dot_npm-global.sh
 docker compose down
 ```
 
@@ -34,12 +35,14 @@ docker-compose.yml が参照する環境変数要ファイル `.env` を用意�
 ./
 ├── .devcontainer/ ... zenn-cli 用 Dev Container
 │   └── devcontainer.json
+├── custom-image-version/ ...カスタム Docker イメージを作って利用する場合の説明
 ├── LICENSE
 ├── README.md
 ├── dc/ ... zenn-cli 実行環境用コンテナ 兼 Docker ボリューム作成用コンテナ
 │   ├── docker-compose.yml
 │   └── script/
 │       ├── download_starship.sh
+│       ├── init_dot_npm-global.sh
 │       ├── install_starship.sh
 │       └── install_zenn-cli.sh
 ├── script/

@@ -1,20 +1,21 @@
 name: dc-zenn-cli
 services:
   dc-zenn-cli:
-    image: node:14-bullseye
+    image: devcon-node-dod-git:1.18
     container_name: dc-zenn-cli
     hostname: dc-zenn-cli
     init: true
     tty: true
     user: ${USER_UID:-1000}:${USER_GID:-1000}
-    command: sh -c "sh /script/install_zenn-cli.sh && sh /script/install_starship.sh && sleep infinity"
+    command: sh -c "sh /script/init_dot_npm-global.sh && sh /script/install_zenn-cli.sh && sh /script/install_starship.sh && sleep infinity"
     working_dir: /home/node
     volumes:
       - workspace-data:/home/node/workspace
       - ${SHARE_DIR:-../share}:/home/node/workspace/share
       - ${SCRIPT_DIR:-./script}:/script:ro
     environment:
-      NPM_CONFIG_PREFIX: /home/node/workspace/.npm-global
+      NPM_CONFIG_USERCONFIG: ${NPM_CONFIG_USERCONFIG:-/home/node/.npmrc}
+      NPM_CONFIG_PREFIX: ${NPM_CONFIG_PREFIX:-/home/node/workspace/.npm-global}
 
 volumes:
   workspace-data:

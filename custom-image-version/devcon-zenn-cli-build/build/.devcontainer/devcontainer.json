@@ -1,0 +1,4 @@
+{
+    "name": "devcon-zenn-cli",
+    "dockerFile": "./Dockerfile"
+}
