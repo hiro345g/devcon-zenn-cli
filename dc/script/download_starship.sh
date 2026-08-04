@@ -8,10 +8,12 @@ if [ ! -e ${STARSHIP_CMD_FILE} ]; then
   if [ ! -e ${STARSHIP_CMD_FILE_DIR} ]; then
     mkdir ${STARSHIP_CMD_FILE_DIR}
   fi
-  cd ${STARSHIP_CMD_FILE_DIR}
-  wget https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz
-  tar xf starship-x86_64-unknown-linux-musl.tar.gz
-  if [ "x$(id -u)" = "x0" ]; then
-    chown node:node ${STARSHIP_CMD_FILE_DIR}/starship-x86_64-unknown-linux-musl.tar.gz ${STARSHIP_CMD_FILE_DIR}/${STARSHIP_CMD}
+  cd "${STARSHIP_CMD_FILE_DIR}" || exit 1
+  # wget https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-musl.tar.gz
+  wget https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz
+  # wget https://github.com/starship/starship/releases/download/v1.26.0/starship-x86_64-unknown-linux-gnu.tar.gz
+  tar xf starship-x86_64-unknown-linux-gnu.tar.gz
+  if [ "$(id -u)" = "0" ]; then
+    chown node:node ${STARSHIP_CMD_FILE_DIR}/starship-x86_64-unknown-linux-gnu.tar.gz ${STARSHIP_CMD_FILE_DIR}/${STARSHIP_CMD}
   fi
 fi

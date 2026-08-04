@@ -1,6 +1,7 @@
 #!/bin/sh
-SCRIPT_DIR=$(cd $(dirname $0);pwd)
-if [ "x$(id -u)" = "x0" ]; then
+SCRIPT_DIRNAME=$(dirname "$0")
+SCRIPT_DIR=$(cd "${SCRIPT_DIRNAME}" || exit 1; pwd)
+if [ "$(id -u)" = "0" ]; then
   echo root
   sh -u node -c "sh ${SCRIPT_DIR}/install_zenn-cli.sh"
   exit 0

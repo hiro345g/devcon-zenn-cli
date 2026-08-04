@@ -1,7 +1,7 @@
 name: devcon-zenn-cli
 services:
   devcon-zenn-cli:
-    image: devcon-node-dod-git:1.0
+    image: mcr.microsoft.com/devcontainers/typescript-node:22-trixie
     container_name: devcon-zenn-cli
     hostname: devcon-zenn-cli
     init: true

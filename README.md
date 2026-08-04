@@ -1,23 +1,22 @@
 # devcon-zenn-cli
 
-これは zenn-cli が使える Dev Container を提供するリポジトリです。Docker Hub にある hiro345g/devcon-node-dod-git:1.0 イメージを使用します。
+これは zenn-cli が使える Dev Container を提供するリポジトリです。mcr.microsoft.com/devcontainers/typescript-node:22-trixie イメージを使用します。
 
 ## 準備
 
 使い始める前に、コンテナーが使用する Docker イメージの取得と、Docker ボリュームの初期化が必要です。それらを実行するためのスクリプトを用意してあるので実行します。
 
-```console
+```bash
 sh script/init.sh
 ```
 
 または、リポジトリをクローンしたディレクトリをカレントディレクトリーとして下記のコマンドを実行します。
 
 ```console
-docker pull hiro345g/devcon-node-dod-git:1.0
-docker tag hiro345g/devcon-node-dod-git:1.0 devcon-node-dod-git:1.0
-docker compose -f dc/docker-compose.yml run --rm -u "0:0" dc-zenn-cli chown -R node:node /home/node/workspace
-docker compose -f dc/docker-compose.yml run --rm -u "0:0" dc-zenn-cli sh /script/download_starship.sh
-docker compose down
+docker pull mcr.microsoft.com/devcontainers/typescript-node:22-trixie
+docker compose -f dc/compose.yaml run --rm -u "0:0" dc-zenn-cli chown -R node:node /home/node/workspace
+docker compose -f dc/compose.yaml run --rm -u "0:0" dc-zenn-cli sh /script/download_starship.sh
+docker compose -p dc-zenn-cli down
 ```
 
 ## 使い方
@@ -26,7 +25,7 @@ VS Code で「表示」-「コマンドパレット」でコマンドパレッ�
 
 zenn-cli で使用する Zenn 用のコンテンツを保存するリポジトリは Docker ボリューム内に用意することを想定していますが、Docker ホストにあるものを参照することもできます。その場合は、devcon-zenn-cli リポジトリの `share` にコンテナ内に Zenn 用のコンテンツを保存するリポジトリを置きます。すると、コンテナ内の `/home/node/workspace/share` に、そのリポジトリが含まれるようになります。
 
-docker-compose.yml が参照する環境変数要ファイル `.env` を用意することで、Docker ホストと devcon-zenn-cli コンテナーが共有するフォルダを変更することができます。`sample.env` を参考にしてください。
+compose.yaml が参照する環境変数要ファイル `.env` を用意することで、Docker ホストと devcon-zenn-cli コンテナーが共有するフォルダを変更することができます。`sample.env` を参考にしてください。
 
 ## ファイルの構成
 
@@ -37,7 +36,7 @@ docker-compose.yml が参照する環境変数要ファイル `.env` を用意�
 ├── LICENSE
 ├── README.md
 ├── dc/ ... zenn-cli 実行環境用コンテナ 兼 Docker ボリューム作成用コンテナ
-│   ├── docker-compose.yml
+│   ├── compose.yaml
 │   └── script/
 │       ├── download_starship.sh
 │       ├── install_starship.sh

@@ -1,7 +1,7 @@
 name: dc-zenn-cli
 services:
   dc-zenn-cli:
-    image: node:14-bullseye
+    image: mcr.microsoft.com/devcontainers/typescript-node:22-trixie
     container_name: dc-zenn-cli
     hostname: dc-zenn-cli
     init: true
