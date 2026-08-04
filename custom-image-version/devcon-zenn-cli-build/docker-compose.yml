@@ -1,0 +1,15 @@
+name: devcon-zenn-cli-build
+services:
+  devcon-zenn-cli-build:
+    image: hiro345g/devcon-node-dod-git:1.18
+    container_name: devcon-zenn-cli-build
+    hostname: devcon-zenn-cli-build
+    init: true
+    tty: true
+    command: sh -c "sh /build/build.sh && sleep infinity"
+    working_dir: /build
+    volumes:
+      - type: bind
+        source: ${BUILD_DIR:-./build}
+        target: /build
+

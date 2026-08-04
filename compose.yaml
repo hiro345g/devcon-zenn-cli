@@ -8,10 +8,11 @@ services:
     tty: true
     user: ${USER_UID:-1000}:${USER_GID:-1000}
     command: sh -c "sh /script/install_zenn-cli.sh && sleep infinity"
+    #command: sh -c "sh /script/install_zenn-cli.sh && sh /script/install_starship.sh && sleep infinity"
     working_dir: /home/node
     volumes:
       - workspace-data:/home/node/workspace
-      - ${SHARE_DIR:-../share}:/home/node/workspace/share
+      - ${SHARE_DIR:-./share}:/home/node/workspace/share
       - ${SCRIPT_DIR:-./dc/script}:/script:ro
     environment:
       NPM_CONFIG_PREFIX: /home/node/workspace/.npm-global

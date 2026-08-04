@@ -33,12 +33,14 @@ compose.yaml が参照する環境変数要ファイル `.env` を用意する�
 ./
 ├── .devcontainer/ ... zenn-cli 用 Dev Container
 │   └── devcontainer.json
+├── custom-image-version/ ...カスタム Docker イメージを作って利用する場合の説明
 ├── LICENSE
 ├── README.md
 ├── dc/ ... zenn-cli 実行環境用コンテナ 兼 Docker ボリューム作成用コンテナ
 │   ├── compose.yaml
 │   └── script/
 │       ├── download_starship.sh
+│       ├── init_dot_npm-global.sh
 │       ├── install_starship.sh
 │       └── install_zenn-cli.sh
 ├── script/

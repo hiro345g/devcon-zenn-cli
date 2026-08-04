@@ -1,0 +1,19 @@
+name: devcon-zenn-cli
+services:
+  devcon-zenn-cli:
+    image: devcon-zenn-cli:1.18
+    container_name: devcon-zenn-cli
+    hostname: devcon-zenn-cli
+    init: true
+    tty: true
+    user: 0:0
+    working_dir: /home/node/workspace
+    volumes:
+      - workspace-data:/home/node/workspace
+      - ${SHARE_DIR:-./share}:/share
+    environment:
+      NPM_CONFIG_USERCONFIG: ${NPM_CONFIG_USERCONFIG:-/home/node/.npmrc}
+
+volumes:
+  workspace-data:
+    name: devcon-zenn-cli-workspace-data
